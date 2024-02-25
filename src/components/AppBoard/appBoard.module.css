@@ -1,0 +1,21 @@
+.appBoard {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: 1fr;
+
+  justify-items: center;
+
+  gap: 20px 0;
+}
+
+@media screen and (max-width: 1580px) {
+  .appBoard {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .appBoard {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
