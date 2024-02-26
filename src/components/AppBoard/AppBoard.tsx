@@ -11,16 +11,18 @@ interface IAppBoard {
 const AppBoard = ({ ids }: IAppBoard) => {
 
   const [cards, setCards] = useState<item[]>([])
+  const [isLoading, setLoading] = useState(false)
 
   const fetchData = useCallback(async () => {
     try {
+      setLoading(true)
       const response = (await API.getItems({ ids })).result
       const withOutDobble = response.reduce<{ [id: string]: any }>((acc, cur) => {
         acc[cur.id] = cur
         return acc
       }, {})
-      console.log(withOutDobble)
       setCards(Object.values(withOutDobble))
+      setLoading(false)
     } catch (error) {
       fetchData()
     }
@@ -35,7 +37,7 @@ const AppBoard = ({ ids }: IAppBoard) => {
 
   return (
     <div className={styles.appBoard}>
-      {cards.map((el) => <Card key={el.id} brand={el.brand} id={el.id} price={el.price} title={el.product} />)}
+      {isLoading ? <h1>Идет загрузка...</h1> : cards.map((el) => <Card key={el.id} brand={el.brand} id={el.id} price={el.price} title={el.product} />)}
     </div>
   )
 }
