@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './card.module.css'
+import img from './../../../img/noImg.jpg'
 
 export interface ICard {
   id: string;
@@ -13,7 +14,7 @@ const Card = ({ brand, id, price, title }: ICard) => {
     <div className={styles.card}>
 
 
-      <img src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg" alt='card img' className={styles.img} />
+      <img src={img} alt='card img' className={styles.img} />
 
 
       <div className={styles.cardWrapper}>

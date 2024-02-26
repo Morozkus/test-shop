@@ -1,13 +1,12 @@
 import md5 from 'md5'
 import axios from 'axios';
 import { formatDate } from '../utils/formatedDate';
-import { fieldsParams, fieldsResponse, filterParams, filterResponse, idsParams, idsResponse, itemsParams, itemsResponse, itemsVariableResponse } from '../models/APIModel';
+import { fieldsParams, fieldsResponse, filterParams, filterResponse, idsParams, idsResponse, itemsParams, itemsResponse } from '../models/APIModel';
 
 const instance = axios.create({
-  baseURL: 'http://api.valantis.store:40000',
+  baseURL: 'https://api.valantis.store:41000',
   headers: {
-    // 'X-Auth': md5('Valantis_' + formatDate(new Date()))
-    'X-Auth': '70e9e15f52c7209ab6b6f80b795aa4f2'
+    'X-Auth': md5('Valantis_' + formatDate(new Date()))
   }
 })
 
@@ -52,6 +51,7 @@ class API {
     if (brand) params.brand = brand
     if (price) params.price = price
     if (product) params.product = product
+    console.log(params)
 
     const { data } = await instance.post<filterResponse>('/', {
       action: "filter",
